@@ -12,6 +12,8 @@ spl_autoload_register(function ($class_name) {
 });
 
 use Util\Request as Request;
+use Util\Router as Router;
+use Util\Dispatcher as Dispatcher;
 
 /**
  * Esempio di creazione di una richiesta
@@ -45,5 +47,11 @@ if ($request->hasPostParams()){
 else
     echo "<p>La richiesta non contiene parametri POST</p>";
 
+$router = new Router();
+$router->get('foo', function() { echo "GET foo\n"; })
+       ->post('bar', function() { echo "POST bar\n"; });
 
+$dispatcher = new Dispatcher($router);
+
+$dispatcher->handle($request);
 
