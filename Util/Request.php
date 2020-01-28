@@ -13,16 +13,19 @@ namespace Util {
         private $path;
         private $get_parameters;
         private $post_parameters;
+        private $root_dir;
 
         /**
          * Request constructor
          * Recupera i dati dal server
+         * @param string $root_dir
          */
-        function __construct() {
+        function __construct(string $root_dir) {
             $this->method = $_SERVER['REQUEST_METHOD'];
             $this->path = $_SERVER['REQUEST_URI'];
             $this->get_parameters = $_GET;
             $this->post_parameters = $_POST;
+            $this->root_dir = $root_dir;
         }
 
         /**
@@ -36,7 +39,7 @@ namespace Util {
          * @return string Ritorna il percorso della richiesta (ad esempio /post/list)
          */
         function getPath() : string{
-            return $this->path;
+            return ltrim(strtok($this->path, '?'), $this->root_dir);
         }
 
         /**
