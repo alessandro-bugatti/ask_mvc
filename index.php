@@ -28,10 +28,22 @@ echo '<p>Percorso della richiesta: ' . $request->getPath() . '</p>';
 $get = $request->getGetParameters();
 $post = $request->getPostParameters();
 
-echo '<pre>';
-var_dump($get);
-echo '</pre>';
+if ($request->hasGetParams()) {
+    echo '<h2>Parametri GET</h2><pre>';
+    var_dump($get);
+    echo '</pre>';
+}
+else
+    echo "<p>La richiesta non contiene parametri GET</p>";
 
-echo '<pre>';
-var_dump($post);
-echo '</pre>';
+
+if ($request->hasPostParams()){
+    echo '<h2>Parametri POST</h2><pre>';
+    var_dump($post);
+    echo '</pre>';
+}
+else
+    echo "<p>La richiesta non contiene parametri POST</p>";
+
+
+

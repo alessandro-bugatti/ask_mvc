@@ -42,17 +42,33 @@ namespace Util {
         /**
          * @return array
          */
-        public function getGetParameters()
+        public function getGetParameters() : ?array
         {
-            return $this->get_parameters;
+            return empty($this->get_parameters)?null:$this->get_parameters;
         }
 
         /**
          * @return array
          */
-        public function getPostParameters()
+        public function getPostParameters() : ?array
         {
-            return $this->post_parameters;
+            return empty($this->post_parameters)?null:$this->post_parameters;
+        }
+
+        /**
+         * @return bool
+         */
+        public function hasGetParams() : bool
+        {
+            return !empty($this->get_parameters);
+        }
+
+        /**
+         * @return bool
+         */
+        public function hasPostParams() : bool
+        {
+            return !empty($this->post_parameters);
         }
 
     }
