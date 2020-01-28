@@ -4,7 +4,6 @@
 namespace Util;
 
 
-
 class Router {
 
     private array $routes = [
@@ -12,12 +11,12 @@ class Router {
         'post' => []
     ];
 
-    function get($pattern, callable $handler) {
+    function get(string $pattern, callable $handler) {
         $this->routes['get'][$pattern] = $handler;
         return $this;
     }
 
-    function post($pattern, callable $handler) {
+    function post(string $pattern, callable $handler) {
         $this->routes['post'][$pattern] = $handler;
         return $this;
     }
