@@ -50,6 +50,10 @@ if ($request->hasPostParams()){
 else
     echo "<p>La richiesta non contiene parametri POST</p>";
 
+/**
+ * Esempio semplice di utilizzo di un router e di un dispatcher
+ */
+
 $router = new Router();
 $router->get('foo', function() { echo "GET foo\n"; })
        ->post('bar', function() { echo "POST bar\n"; });
