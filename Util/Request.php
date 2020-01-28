@@ -9,11 +9,11 @@ namespace Util {
      * server e li rende disponibile in modo più chiaro
      */
     class Request {
-        private $method;
-        private $path;
-        private $get_parameters;
-        private $post_parameters;
-        private $root_dir;
+        private string $method;
+        private string $path;
+        private array $get_parameters;
+        private array $post_parameters;
+        private string $root_dir;
 
         /**
          * Request constructor
