@@ -1,3 +1,7 @@
+# File di Apache che fa in modo che ogni richiesta
+# diretta a questa cartella sia reindirizzata al file
+# index.php, che quindi risulta il punto d'ingresso dell'applicazione
+
 <IfModule mod_rewrite.c>
 Options -MultiViews
 
