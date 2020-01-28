@@ -21,3 +21,17 @@ $request = new Request();
 echo '<p>Metodo della richiesta: ' . $request->getMethod() . '</p>';
 echo '<p>Percorso della richiesta: ' . $request->getPath() . '</p>';
 
+/**
+ * Aggiunta della stampa di eventuali variabili get e post
+ */
+
+$get = $request->getGetParameters();
+$post = $request->getPostParameters();
+
+echo '<pre>';
+var_dump($get);
+echo '</pre>';
+
+echo '<pre>';
+var_dump($post);
+echo '</pre>';
