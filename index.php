@@ -1,4 +1,7 @@
 <?php
+
+require_once ('conf/config.php');
+
 /**
  * Funzione per il caricamento automatico delle classi
  * Ogni volta che nel codice viene creato un oggetto di una certa classe
@@ -19,7 +22,7 @@ use Util\Dispatcher as Dispatcher;
  * Esempio di creazione di una richiesta
  * con la stampa del metodo e del path
  */
-$request = new Request();
+$request = new Request($ROOT);
 echo '<p>Metodo della richiesta: ' . $request->getMethod() . '</p>';
 echo '<p>Percorso della richiesta: ' . $request->getPath() . '</p>';
 
