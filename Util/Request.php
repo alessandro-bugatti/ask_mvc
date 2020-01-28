@@ -11,6 +11,8 @@ namespace Util {
     class Request {
         private $method;
         private $path;
+        private $get_parameters;
+        private $post_parameters;
 
         /**
          * Request constructor
@@ -19,6 +21,8 @@ namespace Util {
         function __construct() {
             $this->method = $_SERVER['REQUEST_METHOD'];
             $this->path = $_SERVER['REQUEST_URI'];
+            $this->get_parameters = $_GET;
+            $this->post_parameters = $_POST;
         }
 
         /**
@@ -33,6 +37,22 @@ namespace Util {
          */
         function getPath() : string{
             return $this->path;
+        }
+
+        /**
+         * @return array
+         */
+        public function getGetParameters()
+        {
+            return $this->get_parameters;
+        }
+
+        /**
+         * @return array
+         */
+        public function getPostParameters()
+        {
+            return $this->post_parameters;
         }
 
     }
