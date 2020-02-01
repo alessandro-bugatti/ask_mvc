@@ -7,11 +7,7 @@ use PDO;
 
 class Connection
 {
-    private static PDO $pdo;
-    private static string $DSN;
-    private static string $user;
-    private static string $password;
-
+    //Impedisce la creazione di oggetti Connection
     private function __construct()
     {
 
@@ -33,9 +29,7 @@ class Connection
             $charset = 'utf8';
 
             $DSN = "mysql:host=$host;dbname=$db;charset=$charset";
-            $user = $user;
-            $password = $pass;
-            $pdo = new PDO($DSN, $user, $password);
+            $pdo = new PDO($DSN, $user, $pass);
         }
         return $pdo;
     }
