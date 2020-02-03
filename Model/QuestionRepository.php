@@ -14,7 +14,7 @@ class QuestionRepository
         $pdo = Connection::getInstance();
         $stmt = $pdo->query('SELECT * FROM question WHERE id = 1');
         $row = $stmt->fetch();
-        return new Question($row['id'],$row['question'], $row['author'], $row['publication_date']);
+        return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date']);
     }
 
     public function saveQuestion(Question $question) : bool
@@ -22,7 +22,7 @@ class QuestionRepository
         $pdo = Connection::getInstance();
         if ($question->getId() === null)
         {
-            $sql = 'INSERT INTO question (question, author) VALUES(:question,:author)';
+            $sql = 'INSERT INTO question (question_text, author) VALUES(:question,:author)';
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 ':question' => $question->getQuestion(),
@@ -31,7 +31,7 @@ class QuestionRepository
         }
         else
         {
-            $sql = 'UPDATE question SET question = :question, author = :author WHERE id = :id';
+            $sql = 'UPDATE question SET question_text = :question, author = :author WHERE id = :id';
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 ':question' => $question->getQuestion(),
