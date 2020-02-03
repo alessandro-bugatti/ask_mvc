@@ -3,8 +3,6 @@
 
 namespace Model;
 
-
-use PDO;
 use Util\Connection;
 
 class QuestionRepository
@@ -12,7 +10,10 @@ class QuestionRepository
     public function getQuestionByID(int $id) : Question
     {
         $pdo = Connection::getInstance();
-        $stmt = $pdo->query('SELECT * FROM question WHERE id = 1');
+        $stmt = $pdo->prepare('SELECT * FROM question WHERE id = :id');
+        $stmt->execute([
+            'id' => $id
+        ]);
         $row = $stmt->fetch();
         return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date']);
     }
