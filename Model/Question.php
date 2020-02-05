@@ -46,8 +46,10 @@ class Question
     /**
      * @return string
      */
-    public function getPublicationDate() : string
+    public function getPublicationDate() : ?string
     {
+        if ($this->publication_date=== null)
+            return null;
         return date('g/m/Y', strtotime($this->publication_date));
     }
 
