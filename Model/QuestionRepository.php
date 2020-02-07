@@ -18,6 +18,15 @@ class QuestionRepository
         return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date']);
     }
 
+    public function getAllQuestions() : array
+    {
+        $pdo = Connection::getInstance();
+        $stmt = $pdo->query('SELECT * FROM question');
+        foreach ($stmt as $row)
+            $result[] = new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date']);
+        return $result;
+    }
+
     public function saveQuestion(Question $question) : bool
     {
         $pdo = Connection::getInstance();
