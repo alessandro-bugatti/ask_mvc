@@ -13,7 +13,7 @@
 </header>
 <!-- Stylized button to mimic the design of an Android app -->
 <button class="primary circular" style="position: fixed; bottom: 3vh; right: 3vw;
-    height:50px; width:50px; font-size: 25px; line-height: 1;"
+    height:50px; width:50px; font-size: 25px; line-height: 1;z-index: 10"
         onclick="window.location.href = 'https://www.google.com';">&#65291;</button>
 <div class="container">
     <div class="row">
