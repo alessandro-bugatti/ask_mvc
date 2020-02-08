@@ -36,10 +36,10 @@ namespace Util {
         }
 
         /**
-         * @return string Ritorna il percorso della richiesta (ad esempio /post/list)
+         * @return string Ritorna il percorso della richiesta (ad esempio question/list)
          */
         function getPath() : string{
-            return ltrim(strtok($this->path, '?'), $this->root_dir);
+            return substr($this->path, strlen($this->root_dir) + 1);
         }
 
         /**
