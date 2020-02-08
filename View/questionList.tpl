@@ -1,8 +1,4 @@
 <?php $this->layout('main',['titolo' => 'Pagina principale']); ?>
-
-<div class="container">
-        <div class="row">
-                <div class="col-sm-8 col-sm-offset-3 col-md-offset-2 col-lg-offset-2">
 <h2>Elenco delle domande</h2>
 <?php foreach ($questions as $question):?>
 
@@ -20,6 +16,3 @@
         </div>
 
 <?php endforeach; ?>
-</div>
-        </div>
-</div>
