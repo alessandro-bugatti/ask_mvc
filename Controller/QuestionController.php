@@ -2,16 +2,18 @@
 
 namespace Controller;
 
+use League\Plates\Engine;
 use Model\QuestionRepository;
 
 class QuestionController{
 
-    private $template;
+    private Engine $template;
 
     /**
      * QuestionController constructor.
+     * @param Engine $template
      */
-    public function __construct($template)
+    public function __construct(Engine $template)
     {
         $this->template = $template;
     }
