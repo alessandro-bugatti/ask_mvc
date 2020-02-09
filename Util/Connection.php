@@ -7,6 +7,8 @@ use PDO;
 
 class Connection
 {
+    private static PDO $pdo;
+
     //Impedisce la creazione di oggetti Connection
     private function __construct()
     {
