@@ -11,6 +11,8 @@ class Router {
         'post' => []
     ];
 
+    private $pageNotFound;
+
     function get(string $pattern, callable $handler) {
         $this->routes['get'][$pattern] = $handler;
         return $this;
@@ -21,10 +23,14 @@ class Router {
         return $this;
     }
 
+    function setPageNotFound(callable $handler){
+        $this->pageNotFound = $handler;
+    }
+
     function match(Request $request) : ?callable {
         $method = strtolower($request->getMethod());
         if (!isset($this->routes[$method])) {
-            return null;
+            return $this->pageNotFound;
         }
 
         $path = $request->getPath();
@@ -33,8 +39,7 @@ class Router {
                 return $handler;
             }
         }
-
-        return null;
+        return $this->pageNotFound;
     }
 
 }

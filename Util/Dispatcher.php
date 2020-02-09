@@ -1,25 +1,23 @@
 <?php
 
-
-namespace Util;
-
+namespace Util {
 
 
-class Dispatcher {
+    class Dispatcher
+    {
 
-    private Router $router;
+        private Router $router;
 
-    function __construct(Router $router) {
-        $this->router = $router;
-    }
-
-    function handle(Request $request) {
-        $handler = $this->router->match($request);
-        if (!$handler) {
-            echo "Non esiste un gestore di questo percorso.";
-            return;
+        function __construct(Router $router)
+        {
+            $this->router = $router;
         }
-        $handler();
-    }
 
+        function handle(Request $request)
+        {
+            $handler = $this->router->match($request);
+            $handler();
+        }
+
+    }
 }

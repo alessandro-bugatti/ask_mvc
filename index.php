@@ -1,6 +1,7 @@
 <?php
 
-require_once ('conf/config.php');
+require_once('conf/config.php');
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Funzione per il caricamento automatico delle classi
@@ -11,52 +12,38 @@ require_once ('conf/config.php');
  */
 
 spl_autoload_register(function ($class_name) {
-    include_once __DIR__ . '/' . str_replace('\\','/', $class_name) . '.php';
+    include_once __DIR__ . '/' . str_replace('\\', '/', $class_name) . '.php';
 });
 
+use Controller\PageNotFoundController;
+use Controller\QuestionController;
+use League\Plates\Engine;
+use Util\Dispatcher as Dispatcher;
 use Util\Request as Request;
 use Util\Router as Router;
-use Util\Dispatcher as Dispatcher;
 
-/**
- * Esempio di creazione di una richiesta
- * con la stampa del metodo e del path
- */
 $request = new Request($ROOT);
-echo '<p>Metodo della richiesta: ' . $request->getMethod() . '</p>';
-echo '<p>Percorso della richiesta: ' . $request->getPath() . '</p>';
-
-/**
- * Aggiunta della stampa di eventuali variabili get e post
- */
-
-$get = $request->getGetParameters();
-$post = $request->getPostParameters();
-
-if ($request->hasGetParams()) {
-    echo '<h2>Parametri GET</h2><pre>';
-    var_dump($get);
-    echo '</pre>';
-}
-else
-    echo "<p>La richiesta non contiene parametri GET</p>";
-
-
-if ($request->hasPostParams()){
-    echo '<h2>Parametri POST</h2><pre>';
-    var_dump($post);
-    echo '</pre>';
-}
-else
-    echo "<p>La richiesta non contiene parametri POST</p>";
 
 /**
  * Esempio semplice di utilizzo di un router e di un dispatcher
  */
 
+$templates = new Engine('./View', 'tpl');
+
+
 $router = new Router();
-$router->get('foo', function() { echo "GET foo\n"; })
-       ->post('bar', function() { echo "POST bar\n"; });
+
+$router->setPageNotFound(function () use ($templates) {
+    $a = new PageNotFoundController($templates);
+    $a->show();
+}
+);
+
+$router->get('question/list', function () use ($templates) {
+    $a = new QuestionController($templates);
+    $a->list();
+}
+);
 
 $dispatcher = new Dispatcher($router);
 
