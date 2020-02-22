@@ -3,7 +3,6 @@
 namespace Controller;
 
 use League\Plates\Engine;
-use Model\QuestionRepository;
 
 class PageNotFoundController{
 
@@ -20,7 +19,7 @@ class PageNotFoundController{
 
     public function show()
     {
-        echo $this->template->render('page_not_found',[]);
+        echo $this->template->render('pageNotFound',[]);
     }
 
 }
