@@ -11,7 +11,6 @@ class QuestionController{
 
     /**
      * QuestionController constructor.
-     * @param Engine $template
      */
     public function __construct(Engine $template)
     {
@@ -23,6 +22,11 @@ class QuestionController{
         $repo = new QuestionRepository();
         $questions = $repo->getAllQuestions();
         echo $this->template->render('questionList',['questions' => $questions]);
+    }
+
+    public function showForm()
+    {
+        echo $this->template->render('questionForm');
     }
 
 }

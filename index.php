@@ -19,7 +19,7 @@ use Controller\PageNotFoundController;
 use Controller\QuestionController;
 use League\Plates\Engine;
 use Util\Dispatcher as Dispatcher;
-use Util\Request as Request;
+use Util\Request;
 use Util\Router as Router;
 
 $request = new Request($ROOT);
@@ -42,6 +42,12 @@ $router->setPageNotFound(function () use ($templates) {
 $router->get('question/list', function () use ($templates) {
     $a = new QuestionController($templates);
     $a->list();
+}
+);
+
+$router->get('question/form', function () use ($templates) {
+    $a = new QuestionController($templates);
+    $a->showForm();
 }
 );
 
