@@ -1,5 +1,5 @@
 <?php $this->layout('main',['titolo' => 'Fai una domanda']); ?>
-<form action="/ask_mvc/question/add" method="post">
+<form action="<?=$this->root_path()?>/question/add" method="post">
         <fieldset>
                 <legend>Fai la tua domanda</legend>
                 <div class="row responsive-label">

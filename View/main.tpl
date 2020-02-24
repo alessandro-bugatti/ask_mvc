@@ -14,7 +14,7 @@
 <!-- Stylized button to mimic the design of an Android app -->
 <button class="primary circular" style="position: fixed; bottom: 3vh; right: 3vw;
     height:50px; width:50px; font-size: 25px; line-height: 1;z-index: 10"
-        onclick="window.location.href = '/ask_mvc/question/form';">&#65291;</button>
+        onclick="window.location.href = '<?=$this->root_path()?>/question/form';">&#65291;</button>
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-3 col-md-offset-2 col-lg-offset-2">
