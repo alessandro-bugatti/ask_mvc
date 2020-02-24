@@ -3,18 +3,22 @@
 namespace Controller;
 
 use League\Plates\Engine;
+use Model\Question;
 use Model\QuestionRepository;
+use Util\Request;
 
 class QuestionController{
 
     private Engine $template;
+    private ?Request $request;
 
     /**
      * QuestionController constructor.
      */
-    public function __construct(Engine $template)
+    public function __construct(Engine $template, Request $request = null)
     {
         $this->template = $template;
+        $this->request = $request;
     }
 
     public function list()
