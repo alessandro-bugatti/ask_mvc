@@ -30,6 +30,17 @@ $request = new Request($ROOT);
 
 $templates = new Engine('./View', 'tpl');
 
+//Registra una funzione che può poi essere chiamata nei template
+//per risolvere il problema dei riferimenti assoluti
+//quando l'applicazione è installata in una sottocartella
+//della root del server web
+//Per utilizzarla nei template basterà scrivere
+// <?=$this->root_path() ? > e restituisce la root effettiva
+//dell'installazione
+
+$templates->registerFunction('root_path', function () {
+    return \Util\Helper::root_path();
+});
 
 $router = new Router();
 
