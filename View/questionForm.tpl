@@ -1,5 +1,5 @@
 <?php $this->layout('main',['titolo' => 'Fai una domanda']); ?>
-<form action="question/add" method="post">
+<form action="/ask_mvc/question/add" method="post">
         <fieldset>
                 <legend>Fai la tua domanda</legend>
                 <div class="row responsive-label">
@@ -16,7 +16,7 @@
                                 <label class="doc" for="autore">Autore</label>
                         </div>
                         <div class="col-sm-12 col-md">
-                                <input size="40" type="text" placeholder="Autore"/>
+                                <input size="40" type="text" name="autore" placeholder="Autore"/>
                         </div>
                 </div>
                 <div class="row responsive-label">

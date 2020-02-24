@@ -51,6 +51,12 @@ $router->get('question/form', function () use ($templates) {
 }
 );
 
+$router->post('question/add', function () use ($templates, $request) {
+    $a = new QuestionController($templates, $request);
+    $a->add();
+}
+);
+
 $dispatcher = new Dispatcher($router);
 
 $dispatcher->handle($request);
