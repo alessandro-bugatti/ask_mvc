@@ -50,7 +50,7 @@ class Question
     {
         if ($this->publication_date=== null)
             return null;
-        return date('g/m/Y', strtotime($this->publication_date));
+        return date('d/m/Y h:m:s', strtotime($this->publication_date));
     }
 
     /**
