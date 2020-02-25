@@ -21,7 +21,7 @@ class QuestionRepository
     public function getAllQuestions() : array
     {
         $pdo = Connection::getInstance();
-        $stmt = $pdo->query('SELECT * FROM question');
+        $stmt = $pdo->query('SELECT * FROM question ORDER BY publication_date DESC');
         foreach ($stmt as $row)
             $result[] = new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date']);
         return $result;
