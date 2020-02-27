@@ -7,7 +7,11 @@ use Util\Connection;
 
 class QuestionRepository
 {
-    public function getQuestionByID(int $id) : Question
+    private function __construct()
+    {
+    }
+
+    public static function getQuestionByID(int $id) : Question
     {
         $pdo = Connection::getInstance();
         $stmt = $pdo->prepare('SELECT * FROM question WHERE id = :id');
@@ -18,7 +22,7 @@ class QuestionRepository
         return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date']);
     }
 
-    public function getAllQuestions() : array
+    public static function getAllQuestions() : array
     {
         $pdo = Connection::getInstance();
         $stmt = $pdo->query('SELECT * FROM question ORDER BY publication_date DESC');
@@ -27,7 +31,7 @@ class QuestionRepository
         return $result;
     }
 
-    public function saveQuestion(Question $question) : bool
+    public static function saveQuestion(Question $question) : bool
     {
         $pdo = Connection::getInstance();
         if ($question->getId() === null)
