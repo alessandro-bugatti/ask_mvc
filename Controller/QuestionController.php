@@ -23,8 +23,7 @@ class QuestionController{
 
     public function list()
     {
-        $repo = new QuestionRepository();
-        $questions = $repo->getAllQuestions();
+        $questions = QuestionRepository::getAllQuestions();
         echo $this->template->render('questionList',['questions' => $questions]);
     }
 
@@ -35,7 +34,6 @@ class QuestionController{
 
     public function add()
     {
-        $repo = new QuestionRepository();
         $pars = $this->request->getPostParameters();
         if (isset($pars['testo']) && isset($pars['autore']))
         {
@@ -45,7 +43,7 @@ class QuestionController{
         else
             header("location: /ask_mvc/question/list");
         $question = new Question(null,$testo,$autore,date("Y-m-d H:i:s"));
-        $salvata = $repo->saveQuestion($question);
+        $salvata = QuestionRepository::saveQuestion($question);
         if ($salvata === true)
             header("location: /ask_mvc/question/list");
     }
