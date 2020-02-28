@@ -39,7 +39,14 @@ namespace Util {
          * @return string Ritorna il percorso della richiesta (ad esempio question/list)
          */
         function getPath() : string{
-            return substr($this->path, strlen($this->root_dir) + 1);
+            //Questa parte serve per eliminare un'eventuale sottocartella all'inizio del percorso
+            $len = strlen($this->root_dir) + 1;
+            //Quest parte serve ad eliminare gli eventuali parametri GET
+            if (strpos($this->path,'?') !== false)
+                $pos = strpos($this->path,'?') - $len;
+            else
+                $pos = strlen($this->path);
+            return substr($this->path, strlen($this->root_dir) + 1, $pos);
         }
 
         /**
