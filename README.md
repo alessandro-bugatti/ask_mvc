@@ -1,8 +1,16 @@
 # ask_mvc
 Piccolo framework MVC di esempio, costruito per mostrare come costruire applicazioni PHP che seguono il *pattern* **MVC**.
 
-## Come installarlo e farlo funzionare
-Scaricare tutti i file da GitHub e copiarli in una cartella all'interno della *root* del web server.
+- [Come installarlo e farlo funzionare](come-installarlo-e-farlo-funzionare)
+- [Come contribuire](come-contribuire)
+
+# Come installarlo e farlo funzionare
+### Installazione dei file PHP
+Ci sono due modalità per questo primo passaggio, elencate qua sotto:
+#### Modalità semplice
+Andare nella sezione [release](https://github.com/alessandro-bugatti/ask_mvc/releases) e scaricare il file zip più recente, scompattarlo all'interno della propria cartella *root* del web server e procedere con le istruzioni sotto. Il "problema" di questa modalità è che le release non è detto che vengano tenute aggiornate con le ultime modifiche fatte nel repository
+#### Modalità meno semplice
+Scaricare tutti i file da GitHub e copiarli in una cartella all'interno della *root* del web server, successivamente utilizzare Composer per l'installazione delle libreria Plates.
 
 ### Caricare il database
 Tra i file presenti nella cartella principale si trova anche un file esportato dal database di esempio che si chiama **ask.sql**. Deve essere importato all'interno del proprio database MySQL e eventualmente va creato un utente con i permessi corretti d'accesso. Le informazioni sulla connessione si trovano nel file [Util/Connection.php](https://github.com/alessandro-bugatti/ask_mvc/blob/master/Util/Connection.php) e da lì possono essere adattate nel modo che si ritiene corretto per la propria configurazione
@@ -23,3 +31,15 @@ A  questo punto nei vari template, dove servisse creare dei link, è stato defin
 ```
 
 In questo esempio la *action* della form avrà ad esempio il valore /ask_mvc/question/add se $ROOT è uguale a /ask_mvc.
+
+# Come contribuire
+Questa sezione è per gli studenti che volessero contribuire aggiungendo del proprio codice: credo che contribuire abbia un ottimo valore didattico, perchè permette di usare git in maniera più realistica, permette di vedere come funziona la collaborazione nella scrittura di codice a più mani e magari è anche divertente.
+Come procedere:
+- fare un fork di questo repository
+- decidere su quale aspetto si vuole lavorare o vedere se c'è già un issue aperto che può interessare
+- se ci fosse già un issue aperto di interesse non ancora assegnato, proporsi per risolverlo
+- se invece si vuole proporre un nuovo issue iniziare a descrivere bene cosa si vuole fare, che poi ve lo assegno
+- NON procedere in maniera autonoma, altrimenti si rischia poi di non riuscire a fare un merge pulito, ma di avere proprie modifiche che si vanno a sovrapporre a quelle di altri
+- una volta capito cosa fare creare un nuovo branch nel proprio repository e procedere con il codice.
+- una volta finito seguire le indicazioni che trovate [qua](https://gist.github.com/Chaser324/ce0505fbed06b947d962), in cui è indicato come procedere per arrivare a una pull-request fatta verso questo repository.
+- A questo punto parte una discussione su quanto fatto con eventuali richieste di modifiche e quando si arriva a un punto soddisfacente la pull-request verrà integrata nelle modifiche
