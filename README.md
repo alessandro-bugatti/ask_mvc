@@ -1,8 +1,8 @@
 # ask_mvc
 Piccolo framework MVC di esempio, costruito per mostrare come costruire applicazioni PHP che seguono il *pattern* **MVC**.
 
-- [Come installarlo e farlo funzionare](come-installarlo-e-farlo-funzionare)
-- [Come contribuire](come-contribuire)
+- [Come installarlo e farlo funzionare](#come-installarlo-e-farlo-funzionare)
+- [Come contribuire](#come-contribuire)
 
 # Come installarlo e farlo funzionare
 ### Installazione dei file PHP
