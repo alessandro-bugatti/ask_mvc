@@ -5,7 +5,7 @@ namespace Controller;
 use League\Plates\Engine;
 use Model\Question;
 use Model\QuestionRepository;
-use Model\AnswerRepository;
+use Model\Answer;
 use Util\Request;
 
 class QuestionController{
@@ -59,6 +59,22 @@ class QuestionController{
         $salvata = QuestionRepository::saveQuestion($question);
         if ($salvata === true)
             header("location: /ask_mvc/question/list");
+    }
+
+    public function addAnswer()
+    {
+        $pars = $this->request->getPostParameters();
+        if (isset($pars['testo']) && isset($pars['autore']) && $pars['testo'] !== "" && $pars['autore'] !== "")
+        {
+            $testo = $pars['testo'];
+            $autore = $pars['autore'];
+        }
+        else
+            header("location: /ask_mvc/question/answer/list?question_id=" . $this->request->getGetParameters()['question_id']); 
+        $answer = new Answer(null,$testo,$autore,date("Y-m-d H:i:s"),$this->request->getGetParameters()['question_id']);
+        $salvata = QuestionRepository::saveAnswer($answer);
+        if ($salvata === true)
+            header("location: /ask_mvc/question/answer/list?question_id=" . $this->request->getGetParameters()['question_id']);
     }
 
 }

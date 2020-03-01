@@ -85,6 +85,12 @@ $router->post('question/add', function () use ($templates, $request) {
 }
 );
 
+$router->post('question/answer/add', function () use ($templates, $request) {
+    $questionController = new QuestionController($templates, $request);
+    $questionController->addAnswer();
+}
+);
+
 $dispatcher = new Dispatcher($router);
 
 $dispatcher->handle($request);

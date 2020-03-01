@@ -7,7 +7,7 @@
         </div>
     </div>
 </div>
-<form action="<?=$this->root_path()?>/question/answer/add" method="post">
+<form action="<?=$this->root_path()?>/question/answer/add?question_id=<?=$this->e($question->getId())?>" method="post">
         <fieldset>
                 <legend>Aggiungi una risposta</legend>
                 <div class="row responsive-label">
