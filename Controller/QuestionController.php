@@ -35,7 +35,10 @@ class QuestionController{
     public function add()
     {
         $pars = $this->request->getPostParameters();
-        if (isset($pars['testo']) && isset($pars['autore']))
+        //Controlla sia che sia arrivati i parametri POST
+        //siano che nessuno dei due sia vuoto
+        if (isset($pars['testo']) && isset($pars['autore']) &&
+            !empty($pars['testo']) && !empty($pars['autore']))
         {
             $testo = $pars['testo'];
             $autore = $pars['autore'];
