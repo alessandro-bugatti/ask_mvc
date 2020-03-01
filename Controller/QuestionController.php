@@ -5,6 +5,7 @@ namespace Controller;
 use League\Plates\Engine;
 use Model\Question;
 use Model\QuestionRepository;
+use Model\AnswerRepository;
 use Util\Request;
 
 class QuestionController{
@@ -30,6 +31,13 @@ class QuestionController{
     public function showForm()
     {
         echo $this->template->render('questionForm');
+    }
+
+    public function answerList(int $question_id)
+    {
+        $question = QuestionRepository::getQuestionByID($question_id);
+        $answers = AnswerRepository::getAnswersByQuestionId($question_id);
+        echo $this->template->render('answerList',['question' => $question, 'answers' => $answers]);
     }
 
     public function add()

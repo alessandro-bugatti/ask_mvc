@@ -15,12 +15,17 @@ spl_autoload_register(function ($class_name) {
     include_once __DIR__ . '/' . str_replace('\\', '/', $class_name) . '.php';
 });
 
+use Controller\AnswerController;
 use Controller\PageNotFoundController;
 use Controller\QuestionController;
 use League\Plates\Engine;
 use Util\Dispatcher as Dispatcher;
 use Util\Request;
 use Util\Router as Router;
+
+use Model\Answer;
+use Model\AnswerRepository;
+
 
 $request = new Request($ROOT);
 
@@ -59,6 +64,12 @@ $router->get('question/list', function () use ($templates) {
 $router->get('question/form', function () use ($templates) {
     $a = new QuestionController($templates);
     $a->showForm();
+}
+);
+
+$router->get('question/answer/list', function () use ($templates, $request) {
+    $questionController = new QuestionController($templates);
+    $questionController->answerList($request->getGetParameters()['question_id']);
 }
 );
 
