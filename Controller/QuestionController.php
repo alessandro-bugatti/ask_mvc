@@ -42,8 +42,7 @@ class QuestionController{
     public function answerList(int $question_id)
     {
         $question = QuestionRepository::getQuestionByID($question_id);
-        $answers = AnswerRepository::getAnswersByQuestionId($question_id);
-        echo $this->template->render('answerList',['question' => $question, 'answers' => $answers]);
+        echo $this->template->render('answerList',['question' => $question, 'answers' => $question->getAnswers()]);
     }
 
     public function add()
@@ -56,7 +55,7 @@ class QuestionController{
         }
         else
             header("location: /ask_mvc/question/list");
-        $question = new Question(null,$testo,$autore,date("Y-m-d H:i:s"));
+        $question = new Question(null,$testo,$autore,date("Y-m-d H:i:s"),null);
         $salvata = QuestionRepository::saveQuestion($question);
         if ($salvata === true)
             header("location: /ask_mvc/question/list");

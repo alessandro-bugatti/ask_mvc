@@ -10,6 +10,7 @@ class Question
     private string $question;
     private string $author;
     private ?string $publication_date;
+    private ?array $answers;
      /**
       * Question constructor.
       * @param $id
@@ -17,12 +18,13 @@ class Question
       * @param $author
       * @param $publication_date
       */
-        public function __construct($id, $question, $author, $publication_date)
+        public function __construct($id, $question, $author, $publication_date, $answers)
         {
             $this->id = $id;
             $this->question = $question;
             $this->author = $author;
             $this->publication_date = $publication_date;
+            $this->answers = $answers;
         }
 
     /**
@@ -32,8 +34,6 @@ class Question
     {
         return $this->id;
     }
-
-
 
     /**
      * @return string
@@ -59,6 +59,21 @@ class Question
     public function getAuthor() : string
     {
         return $this->author;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnswers() : ?array
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Answer $answer) : void
+    {
+        if ($this->answers === null)
+            $this->answers = array();
+        $this->answers[] = $answer;
     }
 
 }
