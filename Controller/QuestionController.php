@@ -33,6 +33,12 @@ class QuestionController{
         echo $this->template->render('questionForm');
     }
 
+    public function showAnswerForm()
+    {
+        $question = QuestionRepository::getQuestionByID($this->request->getGetParameters()['question_id']);
+        echo $this->template->render('answerForm', ['question' => $question]);
+    }
+
     public function answerList(int $question_id)
     {
         $question = QuestionRepository::getQuestionByID($question_id);

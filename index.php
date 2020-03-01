@@ -67,6 +67,12 @@ $router->get('question/form', function () use ($templates) {
 }
 );
 
+$router->get('question/answer/form', function () use ($templates, $request) {
+    $questionController = new QuestionController($templates, $request);
+    $questionController->showAnswerForm();
+}
+);
+
 $router->get('question/answer/list', function () use ($templates, $request) {
     $questionController = new QuestionController($templates);
     $questionController->answerList($request->getGetParameters()['question_id']);

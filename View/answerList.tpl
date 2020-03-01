@@ -20,4 +20,4 @@
 
 <button class="primary circular" style="position: fixed; bottom: 3vh; right: 3vw;
     height:50px; width:50px; font-size: 25px; line-height: 1;z-index: 10"
-        onclick="window.location.href = '<?=$this->root_path()?>/question/form';">&#65291;</button>
+        onclick="window.location.href = '<?=$this->root_path()?>/question/answer/form?question_id=' + <?=$this->e($question->getId())?>;">&#65291;</button>
