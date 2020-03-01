@@ -41,7 +41,7 @@ class QuestionRepository
         }
         $stmt = $pdo->query('SELECT * FROM question ORDER BY publication_date DESC');
         foreach ($stmt as $row)
-            $result[$row['id']] = new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date'], null);
+            $result[$row['id']] = new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date']);
         foreach($answers as $answer){
             $result[$answer->getQuestionID()]->addAnswer($answer);
         }
