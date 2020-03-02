@@ -4,27 +4,28 @@
 namespace Model;
 
 
-class Question
+class Answer
 {
     private ?int $id;
-    private string $question;
+    private string $answer;
     private string $author;
     private ?string $publication_date;
-    private ?array $answers;
+    private int $question_id;
      /**
-      * Question constructor.
+      * Answer constructor.
       * @param $id
-      * @param $question
+      * @param $answer
       * @param $author
       * @param $publication_date
+      * @param $question_id
       */
-        public function __construct($id, $question, $author, $publication_date, $answers = array())
+        public function __construct($id, $answer, $author, $publication_date, $question_id)
         {
             $this->id = $id;
-            $this->question = $question;
+            $this->answer = $answer;
             $this->author = $author;
             $this->publication_date = $publication_date;
-            $this->answers = $answers;
+            $this->question_id = $question_id;
         }
 
     /**
@@ -38,9 +39,9 @@ class Question
     /**
      * @return string
      */
-    public function getQuestion() : string
+    public function getAnswer() : string
     {
-        return $this->question;
+        return $this->answer;
     }
 
     /**
@@ -62,18 +63,10 @@ class Question
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getAnswers() : ?array
+    public function getQuestionId() : int
     {
-        return $this->answers;
+        return $this->question_id;
     }
-
-    public function addAnswer(Answer $answer) : void
-    {
-        if ($this->answers === null)
-            $this->answers = array();
-        $this->answers[] = $answer;
-    }
-
 }
