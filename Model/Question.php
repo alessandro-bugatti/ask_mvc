@@ -18,7 +18,7 @@ class Question
       * @param $author
       * @param $publication_date
       */
-        public function __construct($id, $question, $author, $publication_date, $answers = null)
+        public function __construct($id, $question, $author, $publication_date, $answers = array())
         {
             $this->id = $id;
             $this->question = $question;

@@ -30,20 +30,31 @@ class QuestionRepository
         return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date'], $answers);
     }
 
-    public static function getAllQuestions() : array
+    public static function getAllQuestions(int $answersLimit = 0) : array
     {
         $pdo = Connection::getInstance();
-
-        $answers = array();
-        $stmt = $pdo->query('SELECT * FROM answer ORDER BY id_question DESC');
-        while($row = $stmt->fetch()){
-            $answers[] = new Answer($row['id'],$row['answer_text'], $row['author'], $row['publication_date'], $row['id_question']);
-        }
         $stmt = $pdo->query('SELECT * FROM question ORDER BY publication_date DESC');
         foreach ($stmt as $row)
             $result[$row['id']] = new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date']);
-        foreach($answers as $answer){
-            $result[$answer->getQuestionID()]->addAnswer($answer);
+        if ($answersLimit > 0){
+            $answers = array();
+            $stmt = $pdo->prepare('SELECT question_id, answer_id, A.answer_text, A.author, A.publication_date
+                FROM (
+                    SELECT question.id  AS question_id, answer.id AS answer_id, answer_text, answer.author, answer.publication_date, 
+                    (RANK() OVER (PARTITION BY question.id ORDER BY answer.publication_date DESC)) AS ordine 
+                    FROM question, answer 
+                    WHERE question.id = answer.id_question)
+                AS A
+                WHERE ordine <= :answersLimit');
+            $stmt->execute([
+                'answersLimit' => $answersLimit
+            ]);
+            while($row = $stmt->fetch()){
+                $answers[] = new Answer($row['answer_id'],$row['answer_text'], $row['author'], $row['publication_date'], $row['question_id']);
+            }
+            foreach($answers as $answer){
+                $result[$answer->getQuestionID()]->addAnswer($answer);
+            }
         }
         return $result;
     }
