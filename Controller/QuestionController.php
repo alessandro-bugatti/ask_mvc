@@ -39,9 +39,9 @@ class QuestionController{
         echo $this->template->render('answerForm', ['question' => $question]);
     }
 
-    public function answerList(int $question_id)
+    public function answerList()
     {
-        $question = QuestionRepository::getQuestionByID($question_id);
+        $question = QuestionRepository::getQuestionByID($this->request->getGetParameters()['question_id']);
         echo $this->template->render('answerList',['question' => $question, 'answers' => $question->getAnswers()]);
     }
 
