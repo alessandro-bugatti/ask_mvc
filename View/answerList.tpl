@@ -12,7 +12,7 @@
     <div class="section">
         <ul>
             <?php foreach ($answers as $answer):?>
-            <li><?=$this->e($answer->getAuthor()) . " -> " . $this->e($answer->getAnswer())?></li>
+            <li><?=$this->e($answer->getAuthor()) . " dice: " . $this->e($answer->getAnswer())?></li>
             <?php endforeach; ?>
         </ul>
     </div>
