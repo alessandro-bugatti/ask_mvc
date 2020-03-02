@@ -55,7 +55,7 @@ class QuestionController{
         }
         else
             header("location: /ask_mvc/question/list");
-        $question = new Question(null,$testo,$autore,date("Y-m-d H:i:s"),null);
+        $question = new Question(null,$testo,$autore,date("Y-m-d H:i:s"));
         $salvata = QuestionRepository::saveQuestion($question);
         if ($salvata === true)
             header("location: /ask_mvc/question/list");
