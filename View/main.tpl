@@ -9,7 +9,7 @@
 <body>
 
 <header class="sticky">
-    <a href="#" class="logo" style="margin-left: 1rem;">Ask, the only application you need, stop.</a>
+    <a href="<?=$this->root_path()?>/question/list" class="logo" style="margin-left: 1rem;">Ask, the only application you need, stop.</a>
 </header>
 <div class="container">
     <div class="row">
