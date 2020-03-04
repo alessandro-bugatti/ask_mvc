@@ -57,7 +57,10 @@ class QuestionController{
             $autore = $pars['autore'];
         }
         else
+        {
             header("location: /ask_mvc/question/list");
+            return;
+        }
         $question = new Question(null,$testo,$autore,date("Y-m-d H:i:s"));
         $salvata = QuestionRepository::saveQuestion($question);
         if ($salvata === true)
@@ -73,7 +76,10 @@ class QuestionController{
             $autore = $pars['autore'];
         }
         else
-            header("location: /ask_mvc/question/answer/list?question_id=" . $this->request->getGetParameters()['question_id']); 
+        {
+            header("location: /ask_mvc/question/answer/list?question_id=" . $this->request->getGetParameters()['question_id']);
+            return;
+        }
         $answer = new Answer(null,$testo,$autore,date("Y-m-d H:i:s"),$this->request->getGetParameters()['question_id']);
         $salvata = QuestionRepository::saveAnswer($answer);
         if ($salvata === true)
