@@ -24,7 +24,7 @@ class QuestionController{
 
     public function list()
     {
-        $questions = QuestionRepository::getAllQuestions();
+        $questions = QuestionRepository::getAllQuestions(2);
         echo $this->template->render('questionList',['questions' => $questions]);
     }
 
