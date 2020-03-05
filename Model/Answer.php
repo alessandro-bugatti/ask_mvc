@@ -69,4 +69,9 @@ class Answer
     {
         return $this->question_id;
     }
+
+    public function setAnswer(string $answer) : void
+    {
+        $this->answer = $answer;
+    }
 }
