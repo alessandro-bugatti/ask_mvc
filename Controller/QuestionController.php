@@ -7,6 +7,7 @@ use Model\Question;
 use Model\QuestionRepository;
 use Model\Answer;
 use Util\Request;
+use Util\StringUtil;
 
 class QuestionController{
 

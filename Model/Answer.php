@@ -3,6 +3,7 @@
 
 namespace Model;
 
+use Util\StringUtil;
 
 class Answer
 {
@@ -68,5 +69,15 @@ class Answer
     public function getQuestionId() : int
     {
         return $this->question_id;
+    }
+
+    /**
+     * @param int $limit : the string length limit
+     * 
+     * @return string a short answer limited by the $limit param
+     */
+    public function getShortAnswer($limit) : string
+    {
+        return StringUtil::substr_and_append($this->answer, $limit, " ...");
     }
 }
