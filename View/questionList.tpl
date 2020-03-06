@@ -20,7 +20,7 @@
             <?php foreach($question->getAnswers() as $answer) :?>
                 <div class="card fluid">
                     <div class="section">
-                        <p><?=$this->e($answer->getAnswer()) ?></p>
+                        <p><?=$this->e($answer->getShortAnswer(100)) ?></p>
                         <p><small>- <?=$this->e($answer->getAuthor()) ?></small></p>
                     </div>
                 </div>

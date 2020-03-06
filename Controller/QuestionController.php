@@ -26,11 +26,6 @@ class QuestionController{
     public function list()
     {
         $questions = QuestionRepository::getAllQuestions(2);
-        for($i = 1; $i <= count($questions);$i++) {
-            foreach($questions[$i]->getAnswers() as $answer){
-                $answer->setAnswer(StringUtil::substr_and_append($answer->getAnswer(),100," ..."));
-            }
-        }
         echo $this->template->render('questionList',['questions' => $questions]);
     }
 
