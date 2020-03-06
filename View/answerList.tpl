@@ -1,20 +1,23 @@
 <?php $this->layout('main',['titolo' => 'Domanda']); ?>
 <h2>Domanda:</h2>
 
-<div class="card fluid">
-    <div class="section dark">
-        <div classe="col-sm-12 col-lg-6 col-lg-offset-6">
-                <blockquote cite="<?=$this->e($question->getAuthor()) . ", pubblicata il " .
-                $this->e($question->getPublicationDate())?>"><?=$this->e($question->getQuestion()); ?></blockquote>
-        </div>
-
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <blockquote cite="<?=$this->e($question->getAuthor()) . ", pubblicata il " .
+        $this->e($question->getPublicationDate())?>"><?=$this->e($question->getQuestion()); ?></blockquote>
     </div>
-    <div class="section">
-        <ul>
-            <?php foreach ($answers as $answer):?>
-            <li><?=$this->e($answer->getAuthor()) . " dice: " . $this->e($answer->getAnswer())?></li>
-            <?php endforeach; ?>
-        </ul>
+</div>
+
+<div class="row">
+    <div class="col-lg-10 col-lg-offset-1 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10">
+        <?php foreach($question->getAnswers() as $answer) :?>
+            <div class="card fluid">
+                <div class="section">
+                    <p><?=$this->e($answer->getShortAnswer(100)) ?></p>
+                    <p><small>- <?=$this->e($answer->getAuthor()) ?></small></p>
+                </div>
+            </div>
+        <?php endforeach ?>
     </div>
 </div>
 
