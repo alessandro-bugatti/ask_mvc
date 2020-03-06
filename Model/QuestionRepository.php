@@ -81,7 +81,7 @@ class QuestionRepository
                 $answers[] = new Answer($row['answer_id'],$row['answer_text'], $row['author'], $row['publication_date'], $row['question_id']);
             }
             foreach($answers as $answer){
-                $result[$answer->getQuestionID()]->addAnswer($answer, true);
+                $result[$answer->getQuestionID()]->loadAnswer($answer);
             }
         }
         return $result;

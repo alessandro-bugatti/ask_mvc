@@ -71,18 +71,16 @@ class Question
         return $this->answers;
     }
 
-    //se si passa un array di Answer mettere il flag a true
-    public function addAnswer(Answer $answer, bool $is_answer_array = false) : void
+    //da usare solo quando si caricano risposte dal database
+    public function loadAnswer(Answer $answer) : void
     {
-        //l'unico caso in cui viene aggiunto un insieme di risposte è quando vengono caricate
-        //e quindi nessuna viene salvata come newer poichè sono già tutte salvate nel db
-        if($is_answer_array){
-            if ($this->answers === null)
-                $this->answers = array();
-            $this->answers[] = $answer;
-        }else{
-            $this->newer_answer = $answer;
-        }
+    $this->answers[] = $answer;
+    }
+
+    //da usare quando si aggiunge una nuova risposta
+    public function addAnswer(Answer $answer) : void
+    {
+        $this->newer_answer = $answer;
     }
 
     /**
