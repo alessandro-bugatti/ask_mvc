@@ -7,6 +7,7 @@ use Model\Question;
 use Model\QuestionRepository;
 use Model\Answer;
 use Util\Request;
+use Util\StringUtil;
 
 class QuestionController{
 
@@ -24,7 +25,7 @@ class QuestionController{
 
     public function list()
     {
-        $questions = QuestionRepository::getAllQuestions();
+        $questions = QuestionRepository::getAllQuestions(2);
         echo $this->template->render('questionList',['questions' => $questions]);
     }
 
@@ -57,7 +58,10 @@ class QuestionController{
             $autore = $pars['autore'];
         }
         else
+        {
             header("location: /ask_mvc/question/list");
+            return;
+        }
         $question = new Question(null,$testo,$autore,date("Y-m-d H:i:s"));
         $salvata = QuestionRepository::saveQuestion($question);
         if ($salvata === true)
@@ -73,8 +77,10 @@ class QuestionController{
             $testo = $pars['testo'];
             $autore = $pars['autore'];
         }
-        else
+        else{
             header("location: /ask_mvc/question/answer/list?question_id=" . $this->request->getGetParameters()['question_id']);
+            return;
+        }
         $question = QuestionRepository::getQuestionByID($question_id);
         $question->addAnswer(new Answer(null,$testo,$autore,date("Y-m-d H:i:s"),$question_id));
         $salvata = QuestionRepository::saveQuestion($question);
