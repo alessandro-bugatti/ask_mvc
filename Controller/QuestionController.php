@@ -70,21 +70,23 @@ class QuestionController{
 
     public function addAnswer()
     {
+        $question_id = $this->request->getGetParameters()['question_id'];
         $pars = $this->request->getPostParameters();
         if (isset($pars['testo']) && isset($pars['autore']) && $pars['testo'] !== "" && $pars['autore'] !== "")
         {
             $testo = $pars['testo'];
             $autore = $pars['autore'];
         }
-        else
-        {
+        else{
             header("location: /ask_mvc/question/answer/list?question_id=" . $this->request->getGetParameters()['question_id']);
             return;
         }
-        $answer = new Answer(null,$testo,$autore,date("Y-m-d H:i:s"),$this->request->getGetParameters()['question_id']);
-        $salvata = QuestionRepository::saveAnswer($answer);
+        $question = QuestionRepository::getQuestionByID($question_id);
+        $question->addAnswer(new Answer(null,$testo,$autore,date("Y-m-d H:i:s"),$question_id));
+        $salvata = QuestionRepository::saveQuestion($question);
         if ($salvata === true)
-            header("location: /ask_mvc/question/answer/list?question_id=" . $this->request->getGetParameters()['question_id']);
+           header("location: /ask_mvc/question/answer/list?question_id=" . $this->request->getGetParameters()['question_id']);
+        
     }
 
 }
