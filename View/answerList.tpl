@@ -1,10 +1,12 @@
 <?php $this->layout('main',['titolo' => 'Domanda']); ?>
 <h2>Domanda:</h2>
 
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
-        <blockquote cite="<?=$this->e($question->getAuthor()) . ", pubblicata il " .
-        $this->e($question->getPublicationDate())?>"><?=$this->e($question->getQuestion()); ?></blockquote>
+<div class="card fluid">
+    <div class="section dark">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <blockquote cite="<?=$this->e($question->getAuthor()) . ", pubblicata il " .
+            $this->e($question->getPublicationDate())?>"><?=$this->e($question->getQuestion()); ?></blockquote>
+        </div>
     </div>
 </div>
 

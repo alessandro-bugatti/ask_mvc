@@ -9,10 +9,12 @@
         }
     </script>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12" style="cursor: pointer" onclick="make_question_clickable('<?=$question->getId()?>')">
-            <blockquote cite="<?=$this->e($question->getAuthor()) . ", pubblicata il " .
-            $this->e($question->getPublicationDate())?>"><?=$this->e($question->getQuestion()); ?></blockquote>
+    <div class="card fluid">
+        <div class="section dark">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="cursor: pointer" onclick="make_question_clickable('<?=$question->getId()?>')">
+                <blockquote cite="<?=$this->e($question->getAuthor()) . ", pubblicata il " .
+                $this->e($question->getPublicationDate())?>"><?=$this->e($question->getQuestion()); ?></blockquote>
+            </div>
         </div>
     </div>
     <div class="row">
