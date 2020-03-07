@@ -43,7 +43,7 @@ class QuestionRepository
     {
         $pdo = Connection::getInstance();
         $answers = array();
-        $stmt = $pdo->prepare('SELECT * FROM answer WHERE id_question = :id');
+        $stmt = $pdo->prepare('SELECT * FROM answer WHERE id_question = :id  ORDER BY publication_date DESC');
         $stmt->execute([
             'id' => $id
         ]);
