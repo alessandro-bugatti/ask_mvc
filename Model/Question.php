@@ -3,21 +3,27 @@
 
 namespace Model;
 
-
+/**
+ * Class Question
+ * @package Model
+ * Rappresenta una singola domanda
+ */
 class Question
 {
     private ?int $id;
     private string $question;
     private string $author;
     private ?string $publication_date;
-    private ?array $answers;
-    private ?Answer $newer_answer;
+    private ?array $answers; //contiene le risposte già presenti nel DB
+    private ?Answer $newer_answer; //contiene una nuova risposta non ancora riversata nel DB
      /**
       * Question constructor.
       * @param $id
-      * @param $question
+      * @param $question Il testo della domanda
       * @param $author
       * @param $publication_date
+      * @param array $answers contiene le risposte già presenti nel DB
+      * @param null $newer_answer contiene una nuova risposta non ancora riversata nel DB
       */
         public function __construct($id, $question, $author, $publication_date, $answers = array(), $newer_answer = null)
         {
@@ -46,7 +52,7 @@ class Question
     }
 
     /**
-     * @return string
+     * @return string nel formato d/m/Y h:i:s a
      */
     public function getPublicationDate() : ?string
     {
@@ -84,13 +90,16 @@ class Question
     }
 
     /**
-     * @return Answer
+     * @return Answer è una domanda presente in memoria ma non ancora salvata nel DB
      */
     public function getNewerAnswer() : ?Answer
     {
         return $this->newer_answer;
     }
 
+    /**
+     * Pulisce un'eventuale risposta presente, da chiamare dopo averla riversata nel DB
+     */
     public function newerAnswerGotSaved() :void
     {
         $this->newer_answer = null;

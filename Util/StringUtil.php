@@ -3,18 +3,21 @@
 namespace Util;
 
 /**
- * This class provides some functions used to manage strings into template pages without writing logic code in it.
+ * Class StringUtil
+ * Questa classe fornisce funzioni usate per gestire stringhe nelle pagine di template
+ * senza scrivere codice di logica in esse.
+ * @package Util
  */
 class StringUtil {
     private function __construct(){}
 
     /**
-     * @param string $str the input string
-     * @param int $length max length of the string
-     * @param string $appendStr a string containing chars to append to the substring (like "...")
+     * @param string $str la stringa di input
+     * @param int $length la lunghezza massima della stringa
+     * @param string $appendStr una stringa che contiene caratteri da concatenare alla sottostringa (ad esempio "...")
      * 
-     * @return string a string containing the input string if the specified length is equal to the given length, 
-     *                a substring with $appendStr appended if the specified length is less than the original string length 
+     * @return string una stringa che contiene la stringa di input se la lunghezza specificata è uguale alla lunghezza della stringa, 
+     *                una sottostringa con $appendStr concatenato se la luhghezza specificata è minore di quella della stringa originale. 
      */
     public static function substr_and_append(string $str, int $length, string $appendStr) : string {
         if(strlen($str) <= $length)

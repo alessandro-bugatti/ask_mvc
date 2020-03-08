@@ -33,12 +33,28 @@ function saveAnswer(Answer $answer) : bool
     return true;
 
 }
+
+/**
+ * Class QuestionRepository
+ * @package Model
+ * Classe per l'interazione con il database per la gestione delle domande
+ */
 class QuestionRepository
 {
+    /**
+     * QuestionRepository constructor.
+     * Viene dichiarato privato perchè questa non è una classe da cui creare oggetti
+     */
     private function __construct()
     {
     }
 
+    /**
+     * Dato un ID di una domanda restituisce la domanda relativa
+     * @param int $id
+     * @return Question
+     * @todo Gestire il caso di ID non valido
+     */
     public static function getQuestionByID(int $id) : Question
     {
         $pdo = Connection::getInstance();
@@ -58,6 +74,13 @@ class QuestionRepository
         return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date'], $answers);
     }
 
+    /**
+     * @param int $answersLimit Limita il numero di risposte che vengono recuperate dal DB
+     * associate a ogni domanda, cioè ogni domanda avrà un numero di risposte <= $answersLimit,
+     * indipendentemente da quante ne ha realmente. L'idea è di limitare il traffico dati se
+     * questi non sono strettamente necessari
+     * @return array
+     */
     public static function getAllQuestions(int $answersLimit = 0) : array
     {
         $pdo = Connection::getInstance();
@@ -86,6 +109,12 @@ class QuestionRepository
         }
         return $result;
     }
+
+    /**
+     * Salva una domanda nel database
+     * @param Question $question La domanda che verrà salvata
+     * @return bool Indica se il salvataggio è andato a buon fine o no
+     */
 
     public static function saveQuestion(Question $question) : bool
     {
