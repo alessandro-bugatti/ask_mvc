@@ -5,17 +5,29 @@ namespace Util;
 
 use PDO;
 
+/**
+ * Class Connection
+ * Rappresenta la connessione al database, è implementata come Singleton
+ * e viene richiamata tipicamente dentro i model per spostare i dati da e verso il DB
+ * @package Util
+ */
 class Connection
 {
     private static PDO $pdo;
 
-    //Impedisce la creazione di oggetti Connection
+    /**
+     * Connection constructor. Impedisce la creazione di oggetti Connection
+     */
     private function __construct()
     {
 
     }
 
-
+    /**
+     * Restituisce l'oggetto PDO su cui lavoreranno i model. Allo stato attuale
+     * contiene anche tutti i parametri di connessione, per semplificare la scrittura
+     * @return PDO
+     */
     public static function getInstance() : PDO
     {
         if (!isset($pdo))

@@ -6,7 +6,7 @@ namespace Util {
      * Class Request
      * @package Util
      * Semplice classe che riceve i dati di una richiesta dal
-     * server e li rende disponibile in modo più chiaro
+     * server e li rende disponibili in modo più chiaro
      */
     class Request {
         private string $method;
@@ -50,7 +50,8 @@ namespace Util {
         }
 
         /**
-         * @return array
+         * Ritorna l'array dei parametri GET
+         * @return array L'array dei parametri get, sostanzialmente $_GET
          */
         public function getGetParameters() : ?array
         {
@@ -58,7 +59,8 @@ namespace Util {
         }
 
         /**
-         * @return array
+         * Ritorna l'array dei parametri POST
+         * @return array L'array dei parametri post, sostanzialmente $_POST
          */
         public function getPostParameters() : ?array
         {
@@ -66,6 +68,7 @@ namespace Util {
         }
 
         /**
+         * Ritorna vero se ci sono parametri get, falso altrimenti
          * @return bool
          */
         public function hasGetParams() : bool
@@ -74,6 +77,7 @@ namespace Util {
         }
 
         /**
+         * Ritorna vero se ci sono parametri post, falso altrimenti
          * @return bool
          */
         public function hasPostParams() : bool

@@ -5,20 +5,26 @@ namespace Model;
 
 use Util\StringUtil;
 
+/**
+ * Class Answer
+ * @package Model
+ * Rappresenta una singola risposta, esiste solo all'interno di una domanda
+ * @todo Da investigare se davvero serva il question_id, modificando poco se ne potrebbe fare a meno
+ */
 class Answer
 {
     private ?int $id;
     private string $answer;
     private string $author;
     private ?string $publication_date;
-    private int $question_id;
+    private int $question_id; ///
      /**
       * Answer constructor.
-      * @param $id
-      * @param $answer
-      * @param $author
-      * @param $publication_date
-      * @param $question_id
+      * @param $id ID della risposta all'interno del DB
+      * @param $answer Testo
+      * @param $author Autore
+      * @param $publication_date Timestamp
+      * @param $question_id Chiave esterna che fa riferimento alla chiave della domanda a cui è collegata
       */
         public function __construct($id, $answer, $author, $publication_date, $question_id)
         {
@@ -46,7 +52,7 @@ class Answer
     }
 
     /**
-     * @return string
+     * @return string nel formato d/m/Y h:i:s a
      */
     public function getPublicationDate() : ?string
     {

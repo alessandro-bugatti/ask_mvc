@@ -3,7 +3,10 @@
 namespace Util;
 
 /**
- * This class provides some functions used to manage strings into template pages without writing logic code in it.
+ * Class StringUtil
+ * This class provides some functions used to manage strings into template pages
+ * without writing logic code in it.
+ * @package Util
  */
 class StringUtil {
     private function __construct(){}
