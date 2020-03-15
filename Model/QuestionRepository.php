@@ -5,34 +5,6 @@ namespace Model;
 
 use Util\Connection;
 
-function saveAnswer(Answer $answer) : bool
-{
-    $pdo = Connection::getInstance();
-    if ($answer->getId() === null)
-    {
-        $sql = 'INSERT INTO answer (answer_text, author, id_question) VALUES(:answer,:author,:id_question)';
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':answer' => $answer->getAnswer(),
-            ':author' => $answer->getAuthor(),
-            ':id_question' => $answer->getQuestionId()
-        ]);
-    }
-    else
-    {
-        $sql = 'UPDATE answer SET answer_text = :answer, author = :author WHERE id = :id';
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':answer' => $answer->getAnswer(),
-            ':author' => $answer->getAuthor(),
-            ':id' => $answer->getId()
-        ]);
-    }
-    if ($stmt->rowCount() == 0)
-        return false;
-    return true;
-
-}
 
 /**
  * Class QuestionRepository
@@ -152,4 +124,40 @@ class QuestionRepository
             return true;
         }
     }
+
+    /**
+     * Salva una risposta in relazione alla propria domanda, il cui ID
+     * viene ricavato dalla risposta stessa con il metodo getQuestionID
+     * @param Answer $answer La risposta da salvare
+     * @return bool Vero se il salvataggio va a buon fine, falso altrimenti
+     */
+    public static function saveAnswer(Answer $answer) : bool
+    {
+        $pdo = Connection::getInstance();
+        if ($answer->getId() === null)
+        {
+            $sql = 'INSERT INTO answer (answer_text, author, id_question) VALUES(:answer,:author,:id_question)';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':answer' => $answer->getAnswer(),
+                ':author' => $answer->getAuthor(),
+                ':id_question' => $answer->getQuestionId()
+            ]);
+        }
+        else
+        {
+            $sql = 'UPDATE answer SET answer_text = :answer, author = :author WHERE id = :id';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':answer' => $answer->getAnswer(),
+                ':author' => $answer->getAuthor(),
+                ':id' => $answer->getId()
+            ]);
+        }
+        if ($stmt->rowCount() == 0)
+            return false;
+        return true;
+
+    }
+
 }
