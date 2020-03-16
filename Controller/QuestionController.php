@@ -42,6 +42,8 @@ class QuestionController{
     public function answerList()
     {
         $question = QuestionRepository::getQuestionByID($this->request->getGetParameters()['question_id']);
+        if($question->getId()==-1)
+            header("Location: /ask_mvc/question/list");
         echo $this->template->render('answerList',['question' => $question, 'answers' => $question->getAnswers()]);
     }
 
