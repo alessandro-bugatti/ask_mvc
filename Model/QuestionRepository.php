@@ -26,8 +26,9 @@ class QuestionRepository
         $stmt->execute([
             'id' => $id
         ]);
-        $row = $stmt->fetch();
-        return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date'], $answers);
+        if($row = $stmt->fetch())
+            return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date'], $answers);
+        return new Question(-1, "", "", "", null);
     }
 
     public static function getAllQuestions(int $answersLimit = 0) : array
