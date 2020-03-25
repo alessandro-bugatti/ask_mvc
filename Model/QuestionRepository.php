@@ -93,7 +93,7 @@ class QuestionRepository
         $pdo = Connection::getInstance();
 
         if ($question->getNewerAnswer() !== null){
-            if (saveAnswer($question->getNewerAnswer())){
+            if (QuestionRepository::saveAnswer($question->getNewerAnswer())){
                 $question->newerAnswerGotSaved();
                 return true;
             }
@@ -131,7 +131,7 @@ class QuestionRepository
      * @param Answer $answer La risposta da salvare
      * @return bool Vero se il salvataggio va a buon fine, falso altrimenti
      */
-    public static function saveAnswer(Answer $answer) : bool
+    private static function saveAnswer(Answer $answer) : bool
     {
         $pdo = Connection::getInstance();
         if ($answer->getId() === null)
