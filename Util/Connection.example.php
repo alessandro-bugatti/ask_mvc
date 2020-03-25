@@ -1,5 +1,7 @@
 <?php
-
+//Questo è un file di esempio, per far funzionare l'applicazione è necessario
+//farne una copia, rinominarla Connection.php e modificare i parametri di
+//connessione in base alle impostazioni del proprio database.
 
 namespace Util;
 
