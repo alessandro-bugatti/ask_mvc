@@ -42,7 +42,7 @@ class QuestionController{
     public function answerList()
     {
         $question = QuestionRepository::getQuestionByID($this->request->getGetParameters()['question_id']);
-        if(!isset($question)){
+        if($question === null){
             header("Location: /ask_mvc/question/list");
             return;
         }else{
