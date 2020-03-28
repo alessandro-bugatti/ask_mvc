@@ -48,14 +48,14 @@ class QuestionRepository
     private function __construct()
     {
     }
-
+  
     /**
      * Dato un ID di una domanda restituisce la domanda relativa
      * @param int $id
      * @return Question
      * @todo Gestire il caso di ID non valido
      */
-    public static function getQuestionByID(int $id) : Question
+    public static function getQuestionByID(int $id) : ?Question
     {
         $pdo = Connection::getInstance();
         $answers = array();
@@ -70,8 +70,9 @@ class QuestionRepository
         $stmt->execute([
             'id' => $id
         ]);
-        $row = $stmt->fetch();
-        return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date'], $answers);
+        if($row = $stmt->fetch())
+            return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date'], $answers);
+        return null;
     }
 
     /**
