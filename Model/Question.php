@@ -3,28 +3,36 @@
 
 namespace Model;
 
-
+/**
+ * Class Question
+ * @package Model
+ * Rappresenta una singola domanda
+ */
 class Question
 {
     private ?int $id;
     private string $question;
     private string $author;
     private ?string $publication_date;
-    private ?array $answers;
+    private ?array $answers; //contiene le risposte già presenti nel DB
+    private ?Answer $newer_answer; //contiene una nuova risposta non ancora riversata nel DB
      /**
       * Question constructor.
       * @param $id
-      * @param $question
+      * @param $question Il testo della domanda
       * @param $author
       * @param $publication_date
+      * @param array $answers contiene le risposte già presenti nel DB
+      * @param null $newer_answer contiene una nuova risposta non ancora riversata nel DB
       */
-        public function __construct($id, $question, $author, $publication_date, $answers = array())
+        public function __construct($id, $question, $author, $publication_date, $answers = array(), $newer_answer = null)
         {
             $this->id = $id;
             $this->question = $question;
             $this->author = $author;
             $this->publication_date = $publication_date;
             $this->answers = $answers;
+            $this->newer_answer = $newer_answer;
         }
 
     /**
@@ -44,7 +52,7 @@ class Question
     }
 
     /**
-     * @return string
+     * @return string nel formato d/m/Y h:i:s a
      */
     public function getPublicationDate() : ?string
     {
@@ -69,11 +77,32 @@ class Question
         return $this->answers;
     }
 
+    //da usare solo quando si caricano risposte dal database
+    public function loadAnswer(Answer $answer) : void
+    {
+    $this->answers[] = $answer;
+    }
+
+    //da usare quando si aggiunge una nuova risposta
     public function addAnswer(Answer $answer) : void
     {
-        if ($this->answers === null)
-            $this->answers = array();
-        $this->answers[] = $answer;
+        $this->newer_answer = $answer;
+    }
+
+    /**
+     * @return Answer è una domanda presente in memoria ma non ancora salvata nel DB
+     */
+    public function getNewerAnswer() : ?Answer
+    {
+        return $this->newer_answer;
+    }
+
+    /**
+     * Pulisce un'eventuale risposta presente, da chiamare dopo averla riversata nel DB
+     */
+    public function newerAnswerGotSaved() :void
+    {
+        $this->newer_answer = null;
     }
 
 }

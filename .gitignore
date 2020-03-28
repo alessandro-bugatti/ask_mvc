@@ -1,2 +1,4 @@
 vendor/
 composer.lock
+doc/
+Util/Connection.php
