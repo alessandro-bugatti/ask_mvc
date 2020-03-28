@@ -11,7 +11,7 @@ class QuestionRepository
     {
     }
 
-    public static function getQuestionByID(int $id) : Question
+    public static function getQuestionByID(int $id) : ?Question
     {
         $pdo = Connection::getInstance();
         $answers = array();
@@ -28,7 +28,7 @@ class QuestionRepository
         ]);
         if($row = $stmt->fetch())
             return new Question($row['id'],$row['question_text'], $row['author'], $row['publication_date'], $answers);
-        return new Question(-1, "", "", "", null);
+        return null;
     }
 
     public static function getAllQuestions(int $answersLimit = 0) : array
